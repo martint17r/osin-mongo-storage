@@ -64,7 +64,7 @@ func setClient1234(storage *MongoStorage) (*osin.Client, error) {
 		Id:          "1234",
 		Secret:      "aabbccdd",
 		RedirectUri: "http://localhost:14000/appauth"}
-	err := storage.SetClient("1234", client)
+	err := storage.SetClient(client.Id, client)
 	return client, err
 }
 
@@ -83,8 +83,9 @@ func TestGetClient(t *testing.T) {
 	client, err := setClient1234(storage)
 	if err != nil {
 		t.Errorf("setClient returned err: %v", err)
+		return
 	}
-	getClient, err := storage.GetClient("1234")
+	getClient, err := storage.GetClient(client.Id)
 	if err != nil {
 		t.Errorf("getClient returned err: %v", err)
 		return
