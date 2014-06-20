@@ -87,6 +87,7 @@ func TestGetClient(t *testing.T) {
 	getClient, err := storage.GetClient("1234")
 	if err != nil {
 		t.Errorf("getClient returned err: %v", err)
+		return
 	}
 	if !reflect.DeepEqual(client, getClient) {
 		t.Errorf("TestGet failed, expected: '%+v', got: '%+v'", client, getClient)
@@ -133,10 +134,12 @@ func TestLoadAuthorization(t *testing.T) {
 	data, err := saveAuthorization(storage)
 	if err != nil {
 		t.Errorf("saveAuthorization returned err: %v", err)
+		return
 	}
 	loadData, err := storage.LoadAuthorize(data.Code)
 	if err != nil {
 		t.Errorf("loadAuthorization returned err: %v", err)
+		return
 	}
 
 	if !reflect.DeepEqual(data, loadData) {
@@ -159,11 +162,13 @@ func TestRemoveAuthorization(t *testing.T) {
 	data, err := saveAuthorization(storage)
 	if err != nil {
 		t.Errorf("saveAuthorization returned err: %v", err)
+		return
 	}
 	err = storage.RemoveAuthorize(data.Code)
 	loadData, err := storage.LoadAuthorize(data.Code)
 	if err == nil {
 		t.Errorf("RemoveAuthorization failed to remove data: %v", loadData)
+		return
 	}
 }
 
@@ -201,10 +206,12 @@ func TestLoadAccess(t *testing.T) {
 	data, err := saveAccess(storage)
 	if err != nil {
 		t.Errorf("saveAccess returned err: %v", err)
+		return
 	}
 	loadData, err := storage.LoadAccess(data.AccessToken)
 	if err != nil {
 		t.Errorf("loadAccess returned err: %v", err)
+		return
 	}
 	if !reflect.DeepEqual(data, loadData) {
 		t.Errorf("LoadAccess failed, expected: '%+v', got: '%+v'", data, loadData)
@@ -226,6 +233,7 @@ func TestRemoveAccess(t *testing.T) {
 	data, err := saveAccess(storage)
 	if err != nil {
 		t.Errorf("saveAccess returned err: %v", err)
+		return
 	}
 	err = storage.RemoveAccess(data.AccessToken)
 	loadData, err := storage.LoadAccess(data.AccessToken)
@@ -240,10 +248,12 @@ func TestLoadRefresh(t *testing.T) {
 	data, err := saveAccess(storage)
 	if err != nil {
 		t.Errorf("saveAccess returned err: %v", err)
+		return
 	}
 	loadData, err := storage.LoadRefresh(data.RefreshToken)
 	if err != nil {
 		t.Errorf("loadRefresh returned err: %v", err)
+		return
 	}
 	if !reflect.DeepEqual(data, loadData) {
 		t.Errorf("LoadRefresh failed, expected: '%+v', got: '%+v'", data, loadData)
@@ -265,6 +275,7 @@ func TestRemoveRefresh(t *testing.T) {
 	data, err := saveAccess(storage)
 	if err != nil {
 		t.Errorf("saveAccess returned err: %v", err)
+		return
 	}
 	err = storage.RemoveRefresh(data.RefreshToken)
 	loadData, err := storage.LoadAccess(data.RefreshToken)
