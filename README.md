@@ -7,7 +7,17 @@ This package implements the storage interface for [OSIN](https://github.com/Rang
 
 [![baby-gopher](https://raw2.github.com/drnic/babygopher-site/gh-pages/images/babygopher-badge.png)](http://www.babygopher.org)
 
+Docker
+------
+The shell scripts under bin/ build a docker image and execute the tests. Make sure that you can run docker without sudo.
+
+Caveats
+-------
+
 All structs are serialized as is, i.e. no references are created or resolved.
+
+Currently MongoDB >= 2.6 is required, on 2.4 the TestLoad* Tests fail, but I do not know why.
+
 
 Examples
 --------
