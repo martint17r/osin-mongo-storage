@@ -16,7 +16,7 @@ var session *mgo.Session
 
 func init() {
 	var err error
-	session, err = mgo.Dial(GetenvOrDefault("MGOSTORE_MONGO_URL", "localhost"))
+	session, err = mgo.Dial(GetenvOrDefault("MONGODB_PORT_27017_TCP_ADDR", "localhost"))
 	if err != nil {
 		panic(err)
 	}
