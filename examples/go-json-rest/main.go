@@ -30,7 +30,7 @@ func setupOAuth(router *mux.Router) *oAuthHandler {
 	if err != nil {
 		panic(err)
 	}
-	oAuth := NewOAuthHandler(session.DB("osinmongostoragetest"))
+	oAuth := NewOAuthHandler(session, "osinmongostoragetest")
 
 	if _, err := oAuth.Storage.GetClient("1234"); err != nil {
 		if _, err := setClient1234(oAuth.Storage); err != nil {

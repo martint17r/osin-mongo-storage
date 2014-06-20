@@ -31,8 +31,7 @@ func GetenvOrDefault(key, def string) string {
 }
 
 func initTestStorage() *MongoStorage {
-	database := session.DB(selectUniqueDbName())
-	return New(database)
+	return New(session, selectUniqueDbName())
 }
 
 func selectUniqueDbName() string {
@@ -53,7 +52,7 @@ func selectUniqueDbName() string {
 }
 
 func deleteTestDatabase(storage *MongoStorage) {
-	err := storage.database.DropDatabase()
+	err := storage.session.DB(storage.dbName).DropDatabase()
 	if err != nil {
 		panic(err)
 	}

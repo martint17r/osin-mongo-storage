@@ -75,13 +75,13 @@ type oAuthHandler struct {
 	Storage *mgostore.MongoStorage
 }
 
-func NewOAuthHandler(database *mgo.Database) *oAuthHandler {
+func NewOAuthHandler(session *mgo.Session, dbName string) *oAuthHandler {
 	sconfig := osin.NewServerConfig()
 	sconfig.AllowedAuthorizeTypes = osin.AllowedAuthorizeType{osin.CODE, osin.TOKEN}
 	sconfig.AllowedAccessTypes = osin.AllowedAccessType{osin.AUTHORIZATION_CODE,
 		osin.REFRESH_TOKEN, osin.PASSWORD, osin.CLIENT_CREDENTIALS, osin.ASSERTION}
 	sconfig.AllowGetAccessRequest = true
-	storage := mgostore.New(database)
+	storage := mgostore.New(session, dbName)
 	server := osin.NewServer(sconfig, storage)
 	return &oAuthHandler{sconfig, server, storage}
 }
