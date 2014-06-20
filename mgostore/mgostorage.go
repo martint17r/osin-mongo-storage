@@ -20,7 +20,7 @@ type MongoStorage struct {
 	database *mgo.Database
 }
 
-func NewMongoStorage(database *mgo.Database) *MongoStorage {
+func New(database *mgo.Database) *MongoStorage {
 	storage := &MongoStorage{database}
 	index := mgo.Index{
 		Key:        []string{REFRESHTOKEN},

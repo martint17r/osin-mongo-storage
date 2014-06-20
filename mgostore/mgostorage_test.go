@@ -32,7 +32,7 @@ func GetenvOrDefault(key, def string) string {
 
 func initTestStorage() *MongoStorage {
 	database := session.DB(selectUniqueDbName())
-	return NewMongoStorage(database)
+	return New(database)
 }
 
 func selectUniqueDbName() string {
