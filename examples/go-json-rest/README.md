@@ -5,6 +5,8 @@ This Example shows how to use [OSIN](https://github.com/RangelReale/osin), [osin
 
 [![baby-gopher](https://raw2.github.com/drnic/babygopher-site/gh-pages/images/babygopher-badge.png)](http://www.babygopher.org)
 
+This package is based on the [complete example from the OSIN package](https://github.com/RangelReale/osin/tree/master/example/complete): Copyright (c) 2013, Rangel Reale All rights reserved.
+
 start the web server with ```go build && ./go-json-rest```
 
 then curl your token:
@@ -22,3 +24,4 @@ If you curl without the correct token, a 401 response message is returned:
 You could also call the info endpoint
 
       curl -D - http://localhost:3000/oauth2/info?code=$ACCESSTOKEN
+
