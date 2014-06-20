@@ -1,1 +1,4 @@
 language: go
+
+services:
+  - mongodb
